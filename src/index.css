@@ -9,7 +9,12 @@
   --fondo: #FFF8F0;
   --neutro: #E3E7EF;
 }
+@font-face {
+  font-family: DM_Sans;
+  src: url(../public/Bebas_NeueDM_Sans/DM_Sans/DMSans-VariableFont_opszwght.ttf);
+}
 
 body {
   background-color: var(--fondo);
+  font-family: DM_Sans;
 }

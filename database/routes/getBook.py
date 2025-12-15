@@ -15,6 +15,15 @@ def getBookFunction():
     cursor.execute('SELECT * FROM libros WHERE slug = %s', (book_name, ))
     book_info = cursor.fetchall()
     
-    print(book_info)
+    dicc = {'id': book_info[0][0],
+        'name': book_info[0][1],
+        'slug': book_info[0][2],
+        'autor': book_info[0][3],
+        'editorial': book_info[0][4],
+        'category': book_info[0][5],
+        'year': book_info[0][6],
+        'pages': book_info[0][7],
+        'description': book_info[0][8],
+        'reservado': book_info[0][9]}
 
-    return jsonify({'msg': 'Correcto'}), 200
+    return jsonify({'dicc': dicc}), 200
