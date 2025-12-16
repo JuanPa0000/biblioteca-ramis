@@ -28,7 +28,9 @@ export default function Book({bookName}) {
                     <hr className="border-t-1 border-[var(--letra)] mb-1"/>
                     <p>{bookInfo.name}</p>
                 </div>
-                <button className="bg-[var(--letra)] text-[var(--neutro)] w-[10rem] p-3 transform translate-x-[-0.5rem] translate-y-[0.5rem]">RESERVAR</button>
+                <button 
+                className="bg-[var(--letra)] text-[var(--neutro)] w-[10rem] p-3 transform translate-x-[-0.5rem] translate-y-[0.5rem] transition hover:bg-[var(--claro)]"
+                >RESERVAR</button>
             </div>
         </div>
     )

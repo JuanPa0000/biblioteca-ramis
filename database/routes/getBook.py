@@ -26,4 +26,7 @@ def getBookFunction():
         'description': book_info[0][8],
         'reservado': book_info[0][9]}
 
+    cursor.close()
+    connection.close()
+
     return jsonify({'dicc': dicc}), 200
