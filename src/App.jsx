@@ -22,11 +22,11 @@ export default function App() {
     <div className="flex flex-col items-center">
       <Header />
       <div className="flex flex-col gap-2 max-w-[1200px] lg:flex-row">
-        <section className="h-full w-full bg-[var(--principal)]">
+        <section className="h-full w-full bg-[var(--principal)] flex flex-col gap-20">
           
           {categorias.map((category) => { return (
             <div className="flex flex-col items-center">
-              <h1>{category}</h1>
+              <h1 className="text-xl text-[var(--letra)] font-bold">{category}</h1>
               <div className="flex flex-wrap justify-center">
                 {catalog.map((bookInfo, index) => {
                   if(bookInfo[1]==category) {
@@ -38,7 +38,7 @@ export default function App() {
           )})}
 
         </section>
-        <section className="h-full w-full lg:w-[50%] bg-[var(--principal)]">
+        <section className="h-[100vh] w-full lg:w-[50%] bg-[var(--principal)]">
           <Calendar />
         </section>
       </div>
