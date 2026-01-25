@@ -4,10 +4,12 @@
 
 import { useEffect } from "react";
 import { useState } from "react";
+import {useNavigate} from "react-router"
 
 export default function Book({bookName}) {
 
     const [bookInfo, setBookInfo] = useState({});
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch(`http://127.0.0.1:5000/book?name=${bookName}`, {
@@ -29,7 +31,8 @@ export default function Book({bookName}) {
                     <p>{bookInfo.name}</p>
                 </div>
                 
-                <button 
+                <button
+                onClick={() => {navigate(`/reservar?name=${bookInfo.slug}`)}} 
                 className="bg-[var(--principal)] text-[var(--fondo)] w-[10rem] p-3 transform translate-x-[-0.5rem] translate-y-[0.5rem] transition hover:bg-[var(--claro)]"
                 >RESERVAR</button>
             </div>
