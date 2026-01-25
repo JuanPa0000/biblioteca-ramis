@@ -4,12 +4,12 @@ export default function Header() {
 
     return (
         <div className="flex w-full justify-center m-2">
-            <nav className="bg-[var(--principal)] rounded-[1rem]">
+            <nav className="bg-[var(--principal)] border-[var(--neutro)] rounded-xl shadow-xl">
                 <ul className="flex">
                     {headerButtonsList.map((headerButton, index) => {
                         return (
                             <button 
-                            className="rounded-[1rem] hover:bg-[--claro] pl-5 pr-5 p-2"
+                            className="rounded-xl text-[var(--fondo)] hover:bg-[--claro] hover:text-[var(--fondo)] pl-5 pr-5 p-2"
                             key={index}>{headerButton}</button>
                         )
                     })}

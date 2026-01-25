@@ -6,7 +6,7 @@
   --principal: #F27C2A;
   --claro: #FF9E5E;
   --letra: #2E3A59;
-  --fondo: #FFF8F0;
+  --fondo: #fff;
   --neutro: #E3E7EF;
 }
 @font-face {
@@ -15,6 +15,7 @@
 }
 
 body {
-  background-color: var(--fondo);
+  background-image: url('../public/noisy-texture-100x100-o43-d100-c-FFF8F2-t0.png');
+  background-repeat: repeat;
   font-family: DM_Sans;
 }

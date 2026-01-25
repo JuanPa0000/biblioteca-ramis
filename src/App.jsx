@@ -19,7 +19,6 @@ export default function App() {
 
   function scroll(e, num) { // Scroll
     const scrollContainer = e.target.parentElement.parentElement.childNodes[1];
-    console.log(scrollContainer.clientWidth)
     scrollContainer.scrollBy({
       left: num,
       behavior: 'smooth',
@@ -32,7 +31,7 @@ export default function App() {
     <div className="flex flex-col items-center ">
       <Header />
       <div className="flex flex-col gap-2 max-w-[1200px] w-full xl:flex-row">
-        <section className="w-full xl:w-[70%] bg-[var(--principal)] flex flex-col">
+        <section className="w-full xl:w-[70%] bg-[var(--fondo)] flex flex-col border-[1px] border-[var(--neutro)] rounded-xl shadow-xl">
           
           {categorias.map((category) => { 
             return (
@@ -48,19 +47,19 @@ export default function App() {
               
               <button 
               onClick={(e) => {scroll(e, -150)}}
-              className="absolute left-0 top-[40%] text-[2rem] text-[var(--neutro)] pl-2">
+              className="absolute left-0 top-[40%] text-[2rem] text-[var(--fondo)] pl-2">
                 <i className="fa-solid fa-angle-left"></i>
               </button>
               <button
               onClick={(e) => {scroll(e, 150)}}
-              className="absolute right-0 top-[40%] text-[2rem] text-[var(--neutro)] pr-2">
+              className="absolute right-0 top-[40%] text-[2rem] text-[var(--fondo)] pr-2">
                 <i className="fa-solid fa-angle-right"></i>
               </button>
             </div>
           )})}
 
         </section>
-        <section className="w-full bg-[var(--principal)]">
+        <section className="w-full bg-[var(--fondo)] border-[1px] border-[var(--neutro)] rounded-xl shadow-xl">
           <Calendar />
         </section>
       </div>

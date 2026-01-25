@@ -30,7 +30,7 @@ export default function Book({bookName}) {
                 </div>
                 
                 <button 
-                className="bg-[var(--letra)] text-[var(--neutro)] w-[10rem] p-3 transform translate-x-[-0.5rem] translate-y-[0.5rem] transition hover:bg-[var(--claro)]"
+                className="bg-[var(--principal)] text-[var(--fondo)] w-[10rem] p-3 transform translate-x-[-0.5rem] translate-y-[0.5rem] transition hover:bg-[var(--claro)]"
                 >RESERVAR</button>
             </div>
         </div>
