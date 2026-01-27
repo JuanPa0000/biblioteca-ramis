@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router"
-import Header from "./Header";
+import Header from "../components/Header";
 import Calendar from "react-calendar";
 
 export default function ReservarPage() {
