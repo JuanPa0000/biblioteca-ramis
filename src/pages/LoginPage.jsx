@@ -47,7 +47,7 @@ export default function LoginPage() {
                             <input type="checkbox" id="recordarme"/>
                         </div>
                         <button type="submit" className="w-full bg-[var(--claro)] p-3 rounded-[5px] hover:bg-[var(--principal)]">Iniciar Sesion</button>
-                        <p>¿No tienes una cuenta? Crea una <a href="" className="text-[var(--principal)]">aquí</a>.</p>
+                        <p>¿No tienes una cuenta? Crea una <a href="/sign-up" className="text-[var(--principal)]">aquí</a>.</p>
                     </form>
 
                 </div>
