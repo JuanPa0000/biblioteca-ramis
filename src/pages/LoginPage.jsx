@@ -1,4 +1,8 @@
+import { useRef } from "react";
+
 export default function LoginPage() {
+
+    const formRef = useRef(null);
 
     async function handleSubmit(e) {
         e.preventDefault(); //Evita que recargue la pagina
@@ -13,6 +17,14 @@ export default function LoginPage() {
             body: JSON.stringify({email: email, password: password})
         })
         const data = await response.json(); // Data
+        if(data.msg) {
+            alert(data.msg);
+            formRef.current.reset(); //Vaciar formulario
+        } 
+        else {
+            localStorage.setItem("access_token", data.acces_token); // Guardar token de sesion en el localstorage
+            //Redirigir al perfil del usuario
+        }
     }
 
     return (
@@ -23,7 +35,8 @@ export default function LoginPage() {
                 </div>
                 <div className="bg-[var(--fondo)] p-[3rem] w-full">
 
-                    <form 
+                    <form
+                    ref={formRef} 
                     onSubmit={(e) => {handleSubmit(e)}}
                     className="flex flex-col justify-center items-center h-full text-[var(--letra)] gap-3">
                         <h1 className="text-[2rem]">Iniciar Sesion</h1>

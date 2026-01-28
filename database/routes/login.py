@@ -1,5 +1,6 @@
 from flask import jsonify, Blueprint, request
 from Connection import getConnection
+from flask_jwt_extended import create_access_token
 
 login = Blueprint('login', __name__)
 
@@ -16,11 +17,12 @@ def log_user():
     res = cursor.fetchall()
     
     if(len(res)):
-        print("Si Existe")
+        acces_token = create_access_token(identity=res[0])# res = username
+        cursor.close()
+        connection.close()
+        return jsonify(acces_token=acces_token), 200
+        
     else:
-        print("No existe")
-
-    cursor.close()
-    connection.close()
-
-    return jsonify({'response': 'ok'}), 200
+        cursor.close()
+        connection.close()
+        return jsonify({'msg': 'Usuario o contraseña incorrectos'}), 200
