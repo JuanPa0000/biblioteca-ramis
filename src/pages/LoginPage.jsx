@@ -1,8 +1,10 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 export default function LoginPage() {
 
     const formRef = useRef(null);
+
+    const [errorMsg, setErrorMsg] = useState("");
 
     async function handleSubmit(e) {
         e.preventDefault(); //Evita que recargue la pagina
@@ -18,7 +20,7 @@ export default function LoginPage() {
         })
         const data = await response.json(); // Data
         if(data.msg) {
-            alert(data.msg);
+            setErrorMsg(data.msg);
             formRef.current.reset(); //Vaciar formulario
         } 
         else {
@@ -28,9 +30,9 @@ export default function LoginPage() {
     }
 
     return (
-        <div className="flex justify-center items-center h-[100vh]">
+        <div className="flex justify-center items-center h-[100vh] p-4 md:p-0">
             <div className="flex shadow-xl rounded-[10px] w-[1000px] h-[600px] overflow-hidden">
-                <div className="bg-[url(../../public/loginbg.png)] bg-cover bg-no-repeat bg-center w-full flex flex-col justify-end">
+                <div className="bg-[url(../../public/loginbg.png)] bg-cover bg-no-repeat bg-center w-full hidden md:flex flex-col justify-end">
                     <h1 className="text-[var(--fondo)] text-[4rem] font-bold flex flex-col pb-[8rem] p-[1rem]">Bienvenido <span>de nuevo!</span></h1>
                 </div>
                 <div className="bg-[var(--fondo)] p-[3rem] w-full">
@@ -48,7 +50,8 @@ export default function LoginPage() {
                         </div>
                         <button type="submit" className="w-full bg-[var(--claro)] p-3 rounded-[5px] hover:bg-[var(--principal)]">Iniciar Sesion</button>
                         <p>¿No tienes una cuenta? Crea una <a href="/sign-up" className="text-[var(--principal)]">aquí</a>.</p>
-                    </form>
+                        <p className="text-red-400">{errorMsg}</p>
+                   </form>
 
                 </div>
             </div>

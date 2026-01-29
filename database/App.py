@@ -9,6 +9,7 @@ from routes.getCatalog import getCatalog
 #from routes.reservar import reservar
 from routes.login import login
 from routes.sign_up import sign_up
+from routes.profile import profile
 
 App = Flask(__name__)
 CORS(App)
@@ -22,6 +23,7 @@ App.register_blueprint(getCatalog)
 #App.register_blueprint(reservar)
 App.register_blueprint(login)
 App.register_blueprint(sign_up)
+App.register_blueprint(profile)
 
 if __name__ == '__main__':
     App.run(debug=True)

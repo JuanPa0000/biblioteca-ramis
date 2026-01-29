@@ -6,6 +6,7 @@ import App from './App.jsx'
 import ReservarPage from './pages/ReservarPage.jsx'
 import LoginPage from './pages/LoginPage.jsx'
 import SignUpPage from './pages/SignUpPage.jsx'
+import Profile from './pages/Profile.jsx'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -14,6 +15,7 @@ createRoot(document.getElementById('root')).render(
       <Route path='/reservar' element={<ReservarPage />} />
       <Route path='/login'  element={<LoginPage />}/>
       <Route path='/sign-up' element={<SignUpPage />}/>
+      <Route path='/profile' element={<Profile />} />
     </Routes>
   </BrowserRouter>,
 )

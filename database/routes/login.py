@@ -13,11 +13,11 @@ def log_user():
     connection = getConnection()
     cursor = connection.cursor()
 
-    cursor.execute("SELECT name FROM users WHERE email = %s && password = %s",(email, password))
+    cursor.execute("SELECT id FROM users WHERE email = %s && password = %s",(email, password))
     res = cursor.fetchall()
     
     if(len(res)):
-        acces_token = create_access_token(identity=res[0])# res = username
+        acces_token = create_access_token(identity=str(res[0][0]))# res = id
         cursor.close()
         connection.close()
         return jsonify(acces_token=acces_token), 200

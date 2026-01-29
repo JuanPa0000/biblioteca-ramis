@@ -41,9 +41,9 @@ export default function SignUpPage() {
     }
     
     return (
-        <div className="flex justify-center items-center h-[100vh]">
+        <div className="flex justify-center items-center h-[100vh] md:p-0 p-4">
             <div className="flex shadow-xl rounded-[10px] w-[1000px] h-[600px] overflow-hidden">
-                <div className="bg-[url(../../public/loginbg.png)] bg-cover bg-no-repeat bg-center w-full flex flex-col justify-end">
+                <div className="bg-[url(../../public/loginbg.png)] bg-cover bg-no-repeat bg-center w-full hidden md:flex flex-col justify-end">
                     <h1 className="text-[var(--fondo)] text-[4rem] font-bold flex flex-col pb-[8rem] p-[1rem]">Biblioteca <span>IES Joan Ramis</span></h1>
                 </div>
                 <div className="bg-[var(--fondo)] p-[3rem] w-full">
