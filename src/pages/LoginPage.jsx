@@ -1,8 +1,10 @@
 import { useRef, useState } from "react";
+import { useNavigate } from "react-router";
 
 export default function LoginPage() {
 
     const formRef = useRef(null);
+    const navigate = useNavigate();
 
     const [errorMsg, setErrorMsg] = useState("");
 
@@ -25,7 +27,7 @@ export default function LoginPage() {
         } 
         else {
             localStorage.setItem("access_token", data.acces_token); // Guardar token de sesion en el localstorage
-            //Redirigir al perfil del usuario
+            navigate("/profile");//Redirigir al perfil del usuario
         }
     }
 

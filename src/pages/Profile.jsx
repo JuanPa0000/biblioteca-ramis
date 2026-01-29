@@ -26,7 +26,6 @@ export default function Profile() {
             })
             const data = await res.json();
             setUserInfoList(data);
-            console.log(data);
         }
         getUserInfo();
     }, [])
@@ -37,7 +36,7 @@ export default function Profile() {
             <section className="w-full max-w-[1200px] bg-center bg-[var(--fondo)] flex flex-col border-[1px] border-[var(--neutro)] rounded-xl shadow-xl">
                 
                 <div className="bg-[url(../../public/ramis-desde-fuera.jpg)] w-full h-[300px] bg-cover flex flex-col justify-end">
-                    <img src="../../public/profile-avatar.webp" className="w-full shadow-xl rounded-[100%] border-4 border-[var(--fondo)] w-[12rem] transform translate-y-[7rem]"/>
+                    <img src="../../public/profile-avatar.webp" className="shadow-xl rounded-[100%] border-4 border-[var(--fondo)] w-[12rem] transform translate-y-[7rem]"/>
                 </div>
 
                 <div className="pl-[13rem] flex text-[var(--letra)] justify-between h-full">
@@ -49,10 +48,11 @@ export default function Profile() {
                             <p><i className="fa-solid fa-star"></i>Tutor: <span className="text-black font-bold">{userInfoList.tutor}</span></p>
                         </div>
                     </div>
-                    <div className="flex">
-                        <button>
-                            <i className="fa-solid fa-pencil"></i>
+                    <div className="p-3 flex flex-col justify-between items-end">
+                        <button className="w-fit">
+                            <i className="fa-solid fa-pencil transition-all duration-200 hover:text-[1.1rem]"></i>
                         </button>
+                        <a href="/" className="text-[var(--principal)] underline p-3">{"Ver catálogo >>"}</a>
                     </div>
                 </div>
             </section>

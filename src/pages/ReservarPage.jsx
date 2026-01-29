@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router"
+import { useLocation, useNavigate } from "react-router"
 import Header from "../components/Header";
 import Calendar from "react-calendar";
 
@@ -11,11 +11,36 @@ export default function ReservarPage() {
 
     const [dayToReserve, setDayToReserve] = useState();
     const [bookInfo, setBookInfo] = useState({});
+    const navigate = useNavigate();
 
     console.log(dayToReserve);
 
-    function reservar() {
-        
+    async function reservar() {
+
+        const accesToken = localStorage.getItem('access_token');
+
+        if(!accesToken) {
+            navigate('/login');
+            return;
+        }
+        else if(!dayToReserve) {
+            //LLamar a un texto que diga "Elegir dia"
+            return;
+        }
+
+        const res = await fetch(`http://127.0.0.1:5000/reservar`,{ // POST
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${accesToken}`
+            },
+            body: JSON.stringify({ // Enviamos el dia de la reserva y el slug del libro
+                'day': dayToReserve,
+                'bookSlug': bookSlug
+            })
+        })
+        const data = await res.json();
+        console.log(data);
     }
 
     async function getBook() {
