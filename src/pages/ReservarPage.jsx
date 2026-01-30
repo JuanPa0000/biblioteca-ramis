@@ -12,8 +12,7 @@ export default function ReservarPage() {
     const [dayToReserve, setDayToReserve] = useState();
     const [bookInfo, setBookInfo] = useState({});
     const navigate = useNavigate();
-
-    console.log(dayToReserve);
+    const [disabledDates, setDisabledDates] = useState([]);
 
     async function reservar() {
 
@@ -35,7 +34,7 @@ export default function ReservarPage() {
                 Authorization: `Bearer ${accesToken}`
             },
             body: JSON.stringify({ // Enviamos el dia de la reserva y el slug del libro
-                'day': dayToReserve,
+                'fecha': dayToReserve,
                 'bookSlug': bookSlug
             })
         })
@@ -51,18 +50,39 @@ export default function ReservarPage() {
         const data = await response.json();
         setBookInfo(data.dicc);
     }
-    useEffect(() => {getBook()}, []); // Inicializar la funcion getBook() solo cuando se renderize la pagina
+    useEffect(() => { // Inicializar la funcion getBook() y getReservas solo cuando se renderize la pagina
+        getBook();
+        const accesToken = localStorage.getItem('access_token');
+        
+        fetch("http://127.0.0.1:5000/reservar", {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${accesToken}`
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            const dataList = data.msg;
+            let disabledDatesList = [];
+            dataList.forEach(i => {
+                if(i[2] == bookSlug) {
+                    disabledDatesList.push(i[0]);
+                }
+            });
+            setDisabledDates(disabledDatesList);
+        })
+    }, []); 
 
     return (
         <div className="flex flex-col items-center ">
             <Header/>
             <div className="flex flex-col gap-2 max-w-[1200px] w-full xl:flex-row">
-                <div className="w-full xl:w-[70%] bg-[var(--fondo)] flex border-[1px] border-[var(--neutro)] rounded-xl shadow-xl overflow-hidden">
+                <div className="w-full xl:w-[70%] bg-[var(--fondo)] flex gap-2 border-[1px] border-[var(--neutro)] rounded-xl shadow-xl overflow-hidden">
                     <div>
                         <img src={`../../public/${bookInfo.slug}.jpg`}
                         className="w-[30rem]"/>
                     </div>
-                    <div className="w-full flex flex-col gap-4">
+                    <div className="w-full flex flex-col gap-5">
                         <div>
                             <h1 className="text-[1.2rem]">{bookInfo.name}</h1>
                             <p className="bg-[var(--letra)] text-[var(--fondo)] w-fit pl-2 pr-2 rounded-[10px]">{bookInfo.category}</p>
@@ -79,10 +99,17 @@ export default function ReservarPage() {
                     </div>
                 </div>
                 <div className="w-full lg:w-[30%] bg-[var(--fondo)] border-[1px] border-[var(--neutro)] rounded-xl shadow-xl">
-                    <Calendar
-                    minDate={new Date()}
-                    onChange={(value) => {setDayToReserve(value.getDate())}}
-                    />
+                <Calendar
+                  minDate={new Date()}    
+                  onChange={(value) => {
+                    setDayToReserve(`${value.getFullYear()}-${value.getMonth() + 1}-${value.getDate()}`)
+                  }}
+                  tileDisabled={({ date, view }) =>
+                    view === 'month' && 
+                    disabledDates.some(d => new Date(d).toDateString() === date.toDateString())
+                  }
+                />
+
                     <button className="w-fit bg-[var(--principal)] text-white p-1 rounded-[10px]"
                     onClick={() => {reservar()}}
                     >RESERVAR</button>
