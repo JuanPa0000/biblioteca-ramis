@@ -13,6 +13,7 @@ export default function ReservarPage() {
     const [bookInfo, setBookInfo] = useState({});
     const navigate = useNavigate();
     const [disabledDates, setDisabledDates] = useState([]);
+    const [infoMsg, setInfoMsg] = useState({'color': "#aaaaaa", 'text': 'Seleccione un dia para hacer la reserva.'})
 
     async function reservar() {
 
@@ -23,7 +24,7 @@ export default function ReservarPage() {
             return;
         }
         else if(!dayToReserve) {
-            //LLamar a un texto que diga "Elegir dia"
+            setInfoMsg({'color': '#d20000"', 'text': 'Selecciona un dia para hacer la reserva.'})
             return;
         }
 
@@ -39,7 +40,11 @@ export default function ReservarPage() {
             })
         })
         const data = await res.json();
-        console.log(data);
+        if(data.msg=='ok'){
+            setInfoMsg({'color': "#00c61e", 'text': 'Reservado.'});
+        } else {
+            setInfoMsg({'color': "#d20000", 'text': data.msg})
+        }
     }
 
     async function getBook() {
@@ -54,7 +59,7 @@ export default function ReservarPage() {
         getBook();
         const accesToken = localStorage.getItem('access_token');
         
-        fetch("http://127.0.0.1:5000/reservar", {
+        fetch(`http://127.0.0.1:5000/fechas-reservadas?name=${bookSlug}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${accesToken}`
@@ -62,14 +67,7 @@ export default function ReservarPage() {
         })
         .then(res => res.json())
         .then(data => {
-            const dataList = data.msg;
-            let disabledDatesList = [];
-            dataList.forEach(i => {
-                if(i[2] == bookSlug) {
-                    disabledDatesList.push(i[0]);
-                }
-            });
-            setDisabledDates(disabledDatesList);
+            setDisabledDates(data.msg);
         })
     }, []); 
 
@@ -98,7 +96,7 @@ export default function ReservarPage() {
                         </div>
                     </div>
                 </div>
-                <div className="w-full lg:w-[30%] bg-[var(--fondo)] border-[1px] border-[var(--neutro)] rounded-xl shadow-xl">
+                <div className="w-full lg:w-[30%] bg-[var(--fondo)] border-[1px] border-[var(--neutro)] rounded-xl shadow-xl flex flex-col justify-between items-center">
                 <Calendar
                   minDate={new Date()}    
                   onChange={(value) => {
@@ -110,7 +108,9 @@ export default function ReservarPage() {
                   }
                 />
 
-                    <button className="w-fit bg-[var(--principal)] text-white p-1 rounded-[10px]"
+                <p style={{ color: infoMsg.color }}>{infoMsg.text}</p>
+
+                    <button className="w-full bg-[var(--principal)] text-white p-3 hover:bg-[var(--claro)]"
                     onClick={() => {reservar()}}
                     >RESERVAR</button>
                 </div>

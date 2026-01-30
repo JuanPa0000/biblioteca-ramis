@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import Header from "../components/Header"
 import { useNavigate } from "react-router";
+import Reservas from "../components/Reservas";
 
 export default function Profile() {
 
@@ -17,7 +18,7 @@ export default function Profile() {
             return;
         }
 
-        async function getUserInfo() {
+        async function getUserInfo() { // GET datos del usuario
             const res = await fetch("http://127.0.0.1:5000/profile", {
                 method: 'GET',
                 headers: {
@@ -29,11 +30,12 @@ export default function Profile() {
         }
         getUserInfo();
     }, [])
+
     
     return(
-        <div className="flex flex-col items-center ">
+        <div className="flex flex-col items-center gap-2">
             <Header />
-            <section className="w-full max-w-[1200px] bg-center bg-[var(--fondo)] flex flex-col border-[1px] border-[var(--neutro)] rounded-xl shadow-xl">
+            <section className="w-full max-w-[1200px] bg-[var(--fondo)] flex flex-col border-[1px] border-[var(--neutro)] rounded-xl shadow-xl">
                 
                 <div className="bg-[url(../../public/ramis-desde-fuera.jpg)] w-full h-[300px] bg-cover flex flex-col justify-end">
                     <img src="../../public/profile-avatar.webp" className="shadow-xl rounded-[100%] border-4 border-[var(--fondo)] w-[12rem] transform translate-y-[7rem]"/>
@@ -56,6 +58,8 @@ export default function Profile() {
                     </div>
                 </div>
             </section>
+
+            <Reservas />
         </div>
     )
 }

@@ -21,7 +21,6 @@ def getUserInfo():
     aula = data[2]
     tutor = data[3]
 
-    print(data)
     cursor.close()
     connection.close()
 

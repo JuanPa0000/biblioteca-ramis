@@ -36,16 +36,33 @@ def reservar_libro():
 
 @reservar.route('/reservar', methods=['GET'])
 @jwt_required()
-def get_libros():
+def get_reservas():
     user_id = int(get_jwt_identity())
 
     connection = getConnection()
     cursor = connection.cursor()
 
-    cursor.execute('SELECT fecha, libros.titulo, libros.slug, libros.descripcion, libros.categoria FROM reservas JOIN libros ON reservas.libros_id = libros.id')
+    cursor.execute('SELECT fecha, libros.titulo, libros.slug, libros.descripcion, libros.categoria, reservas.id FROM reservas JOIN libros ON reservas.libros_id = libros.id && users_id = %s', (user_id))
     data = cursor.fetchall()
 
     cursor.close()
     connection.close()
 
     return jsonify({'msg': data}), 200
+
+@reservar.route('/reservar', methods=['DELETE'])
+@jwt_required()
+def delete_reserva():
+    reserva_id = request.args.get('id')
+    print(reserva_id)
+
+    connection = getConnection()
+    cursor = connection.cursor()
+
+    cursor.execute('DELETE FROM reservas WHERE id = %s',(reserva_id, ))
+
+    cursor.close()
+    connection.commit()
+    connection.close()
+
+    return jsonify({'msg':'ok'}), 200
