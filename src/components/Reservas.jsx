@@ -48,7 +48,7 @@ export default function Reservas() {
                                     <img src={`../../public/${reserva[2]}.jpg`} className="w-[6rem] h-auto"/>
                                     <div className="flex flex-col gap-2">
                                         <h2 className="text-xl font-bold">{reserva[1]}</h2>
-                                        <p className="">{reserva[3]}</p>
+                                        <p className="hidden sm:flex">{reserva[3]}</p>
                                         <p className="bg-[var(--claro)] w-fit text-white pl-2 pr-2 p-1 rounded-xl">{reserva[4]}</p>
                                     </div>
                                 </div>

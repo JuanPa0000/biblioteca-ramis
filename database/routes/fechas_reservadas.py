@@ -1,13 +1,10 @@
 from flask import Blueprint, jsonify, request
 from Connection import getConnection
-from flask_jwt_extended import jwt_required, get_jwt_identity
 
 fechas_reservadas = Blueprint("fechas_reservadas", __name__)
 
 @fechas_reservadas.route('/fechas-reservadas', methods=['GET'])
-@jwt_required()
 def get_fechas_reservadas():
-    user_id = int(get_jwt_identity())
     book_slug = request.args.get('name')
 
     connection = getConnection()

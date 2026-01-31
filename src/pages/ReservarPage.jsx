@@ -61,9 +61,6 @@ export default function ReservarPage() {
         
         fetch(`http://127.0.0.1:5000/fechas-reservadas?name=${bookSlug}`, {
             method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${accesToken}`
-            }
         })
         .then(res => res.json())
         .then(data => {

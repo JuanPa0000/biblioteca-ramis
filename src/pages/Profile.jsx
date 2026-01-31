@@ -37,15 +37,15 @@ export default function Profile() {
             <Header />
             <section className="w-full max-w-[1200px] bg-[var(--fondo)] flex flex-col border-[1px] border-[var(--neutro)] rounded-xl shadow-xl">
                 
-                <div className="bg-[url(../../public/ramis-desde-fuera.jpg)] w-full h-[300px] bg-cover flex flex-col justify-end">
-                    <img src="../../public/profile-avatar.webp" className="shadow-xl rounded-[100%] border-4 border-[var(--fondo)] w-[12rem] transform translate-y-[7rem]"/>
+                <div className="bg-[url(../../public/ramis-desde-fuera.jpg)] w-full h-[200px] sm:h-[300px] bg-cover flex flex-col justify-end">
+                    <img src="../../public/profile-avatar.webp" className="shadow-xl rounded-[100%] border-4 border-[var(--fondo)] w-[8rem] sm:w-[12rem] transform translate-y-[5rem] sm:translate-y-[7rem]"/>
                 </div>
 
-                <div className="pl-[13rem] flex text-[var(--letra)] justify-between h-full">
+                <div className="pl-[9rem] sm:pl-[13rem] flex text-[var(--letra)] justify-between h-full">
                     <div>
-                        <h1 className="font-bold text-[2rem] ">{userInfoList.username}</h1>
+                        <h1 className="font-bold text-[1.3rem] sm:text-[2rem] ">{userInfoList.username}</h1>
                         <p className="text-gray-400">{userInfoList.email}</p>
-                        <div className="flex gap-10 text-lg pt-2 pb-2">
+                        <div className="flex gap-10 text-md sm:text-lg pt-2 pb-2">
                             <p><i className="fa-solid fa-graduation-cap"></i>Aula: <span className="text-black font-bold">{userInfoList.aula}</span></p>
                             <p><i className="fa-solid fa-star"></i>Tutor: <span className="text-black font-bold">{userInfoList.tutor}</span></p>
                         </div>
@@ -54,7 +54,7 @@ export default function Profile() {
                         <button className="w-fit">
                             <i className="fa-solid fa-pencil transition-all duration-200 hover:text-[1.1rem]"></i>
                         </button>
-                        <a href="/" className="text-[var(--principal)] underline p-3">{"Ver catálogo >>"}</a>
+                        <a href="/" className="text-[var(--principal)] underline p-3 hidden sm:flex">{"Ver catálogo >>"}</a>
                     </div>
                 </div>
             </section>
