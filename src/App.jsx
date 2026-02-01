@@ -19,6 +19,12 @@ export default function App() {
     .then(data => setCatalog(data['dicc']))
   }, [])
 
+  const fechasEventos = [
+    new Date(2026, 1, 16),
+    new Date(2026, 1, 25),
+    new Date(2026, 3, 8),
+  ];
+
   function scroll(e, num) { // Scroll
     const scrollContainer = e.target.parentElement.parentElement.childNodes[1];
     scrollContainer.scrollBy({
@@ -93,7 +99,48 @@ export default function App() {
         </section>
 
         <section className="w-full bg-[var(--fondo)] border-[1px] border-[var(--neutro)] rounded-xl shadow-xl ">
-          <Calendar />
+        <Calendar
+          tileClassName={({ date }) =>
+            fechasEventos.some(
+              (d) => d.toDateString() === date.toDateString()
+            )
+              ? "fecha-especial"
+              : null
+          }
+        />
+          <div className="flex flex-col text-[var(--letra)] items-center">
+            <h1 className="text-white text-lg font-bold p-2 bg-[var(--claro)] w-full flex justify-center">Eventos:</h1>
+            <article className="bg-[var(--neutro)] flex flex-col gap-1 border-[1px] border-[var(--letra)] p-1">
+              <h2 className="text-black">Taller de robótica - 16-02-2026</h2>
+              <p>los estudiantes construirán mini-drones y aprenderán programación básica para hacerlos volar. Una oportunidad práctica para explorar tecnología, trabajo en equipo y creatividad mientras compiten amistosamente por el dron más estable y rápido.</p>
+              <img src="Taller-de-robotica-en-el-colegio-Santa-Teresa-Lisieux.jpg" />
+            </article>
+            <article className="flex flex-col gap-1 border-[1px] border-[var(--letra)] p-1">
+              <h2 className="text-black">Concurso de microrrelatos - 25-02-2026</h2>
+              <p>los alumnos escribirán historias de máximo 100 palabras sobre amistad o aventuras. Se leerán en voz alta y se premiarán la originalidad y el humor, fomentando la creatividad y la expresión literaria en un ambiente divertido.</p>
+              <img src="Literatura-jovenes-y-adultos-1024x512.jpeg" />
+            </article>
+            <article className="bg-[var(--neutro)] flex flex-col gap-1 border-[1px] border-[var(--letra)] p-1">
+              <h2 className="text-black">Jornada científica exprés - 08-04-2026</h2>
+              <p>demostraciones de química, retos de física y experimentos sorprendentes preparados por los alumnos. Aprender haciendo, competir sanamente y descubrir que la ciencia también mola fuera del libro.</p>
+              <img src="quimica-taller.jpg" />
+            </article>
+          </div>
+
+          <div>
+            <h1 className="text-white text-lg font-bold p-2 bg-[var(--claro)] w-full flex justify-center">Especiales:</h1>
+            <img  src="1PFRMq.gif"/>
+            <button 
+            className="text-[var(--letra)] text-lg p-2 border-[3px] border-[var(--letra)] w-full flex justify-center hover:bg-[var(--letra)] hover:text-white transition"
+            onClick={() => {navigate("/reservar?name=donquijotedelamancha")}}
+            >Don Quijote de la mancha</button>
+
+            <img  src="b4a9987cff95f26f3242c19c2f89ca44.gif"/>
+            <button 
+            className="text-[var(--letra)] text-lg p-2 border-[3px] border-[var(--letra)] w-full flex justify-center hover:bg-[var(--letra)] hover:text-white transition"
+            onClick={() => {navigate("/reservar?name=losmiserables")}}
+            >Los miserables</button>
+          </div>
         </section>
         
       </div>

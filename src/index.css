@@ -19,3 +19,8 @@ body {
   background-repeat: repeat;
   font-family: DM_Sans;
 }
+
+.fecha-especial {
+  background: #4dc100 !important;
+  color: white !important;
+}
