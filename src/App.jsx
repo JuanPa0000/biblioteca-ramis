@@ -43,7 +43,7 @@ export default function App() {
               <p className="hidden sm:flex text-[var(--letra)]">Este espacio está pensado para que puedas encontrar libros, reservarlos fácilmente y descubrir novedades y actividades del centro.
                  Todo en un solo lugar, rápido y sencillo.</p>
               <button
-              className="bg-[var(--letra)] text-white rounded-sm pl-2 pr-2 p-1 shadow-md shadow-[var(--letra)] hover:bg-[#2e3a59cf] transition"
+              className="bg-[var(--letra)] text-white rounded-sm pl-2 pr-2 p-1 hover:bg-[#2e3a59cf] transition"
               onClick={() => {navigate('/nosotros')}}
               >Nosotros</button>
             </div>
@@ -86,7 +86,9 @@ export default function App() {
 
           <div className="flex flex-col p-2 pt-[3rem] pb-[3rem] text-center items-center gap-5 text-[var(--letra)] bg-[var(--neutro)]">
             <p>Contamos con un catálogo de más de 50 libros de diferentes categorías, ¡haz click aqui abajo para reservar uno ya mismo!</p>
-            <button className="bg-[var(--letra)] text-white pl-5 pr-5 p-2 font-bold hover:bg-[#2e3a59cf] transition">VER CATÁLOGO COMPLETO</button>
+            <button 
+            onClick={() => {navigate("/catalogo")}}
+            className="bg-[var(--letra)] text-white pl-5 pr-5 p-2 font-bold hover:bg-[#2e3a59cf] transition">VER CATÁLOGO COMPLETO</button>
           </div>
         </section>
 

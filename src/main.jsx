@@ -9,6 +9,7 @@ import SignUpPage from './pages/SignUpPage.jsx'
 import Profile from './pages/Profile.jsx'
 import Novetats from './pages/Novetats.jsx'
 import Nosotros from './pages/Nosotros.jsx'
+import Catalogo from './pages/Catalogo.jsx'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -20,6 +21,7 @@ createRoot(document.getElementById('root')).render(
       <Route path='/profile' element={<Profile />} />
       <Route path='/novetats' element={<Novetats />} />
       <Route path='/nosotros' element={<Nosotros />} />
+      <Route path='/catalogo' element={<Catalogo />} />
     </Routes>
   </BrowserRouter>,
 )
